@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-//import { Text } from 'react-native';
 
-export default class HelloWorldApp extends Component {
+class App extends Component {
     render() {
         return (
-            <p>Hello world!</p>
+            <div>Hello world!</div>
         );
     }
 }
+
+export default App;
+

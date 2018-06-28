@@ -10,7 +10,7 @@ var HTMLWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
         template: __dirname + '/app/index.html',  // the template that you're trying to copy and move
         filename: 'index.html',  //the new file name in transformed directory
-        inject: 'body'  //inject template script tag in body or header
+        inject: 'body'  //inject template script tag in body or header, it should be in BODY because the root container is under body tag
     }
 );
 // var React=require('react');
@@ -22,6 +22,7 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
 // );
 module.exports= {
     entry: __dirname + '/app/index.js', //the entry point of your need-to-transform files
+    mode: 'development',
     module: {
         rules: [
             {
@@ -35,5 +36,5 @@ module.exports= {
         filename: "transformed.js",
         path: __dirname+"/build"
     },
-    plugins: [HTMLWebpackPluginConfig]
+    plugins: [HTMLWebpackPluginConfig],
 };

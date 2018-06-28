@@ -1,9 +1,10 @@
-var React=require('react');
-var ReactDom=require('react-dom');
-var App = require('./components/App');
-if (typeof window !== 'undefined') {
-    ReactDom.render(
-        <App />,
-        document.getElementById('app'),
-    );
-}
+import App from './components/App';
+import ReactDom from 'react-dom';
+import React from 'react';
+
+
+ReactDom.render(
+    <App />,
+    document.getElementById("root")
+);
+
