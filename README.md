@@ -35,3 +35,30 @@ function Counter() {
 *State*: 
 State is used for mutable data, or data that will change
 When you setState(newState) it updates the state object and then re-renders the component.
+
+5. var, let and const
+* var: suggest not to use in ES6,the function scope is within a function;
+````javascript
+for(var i = 0; i<10; i++) {
+  console.log(i) 
+}
+console.log(i)
+//print 1,2,...,10
+````
+* let: use this to declare a variable that might change later on, the function scope is within the bracket {}
+````javascript
+for(let i = 0; i<10; i++) {
+  console.log(i)
+}
+console.log(i)
+//print 1,2, ...,9
+//The last console.log(i) will report error
+````
+* const: use to declare a variable that will not change later on, however, const is not strictly immutable!
+````javascript
+const dog={
+  age: 3
+}
+dog.age = 5  //dog.age actually changed!
+dog = { name: 'biko'} //report an error
+````
