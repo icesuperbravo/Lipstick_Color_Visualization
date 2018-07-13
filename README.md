@@ -62,3 +62,28 @@ const dog={
 dog.age = 5  //dog.age actually changed!
 dog = { name: 'biko'} //report an error
 ````
+
+6. Sorting colors by hex;
+* Some Basic Theories on Color:
+A color is determined by 3 main factors(HSV/L): hue(色相), saturation（饱和度）, value/luminosity（明度）;
+
+HUE: the basic color;
+
+SATURATION: Intensive to washed away;
+
+Value: Brightness, if adding more white into certain color, the brightness will be enhanced and vice versa, if putting more black, the color is getting darker;
+
+* My rough idea on the color sorting
+1. transform the hexvalue to HSV space;
+2. Sort the color by hue(X) and value(Y)?
+
+
+Ref: 
+http://vis.baidu.com/chartcolor/basis/
+https://blog.csdn.net/yongjiankuang/article/details/79279754
+
+7. How to Style React Component: 
+* Flexbox Layout:
+    * use case: when defining a layout for dynamic or even unknown screen sizes ;
+
+https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822

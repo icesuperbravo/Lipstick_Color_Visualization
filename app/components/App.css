@@ -1,0 +1,7 @@
+/*Flex Layout Container*/
+.flexContainer {
+    display: flex;
+    dispaly: -webkit-flex;
+    /*Browswer hack for Safari*/
+    flex-direction: row;
+}

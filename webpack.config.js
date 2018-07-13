@@ -13,13 +13,7 @@ var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
         inject: 'body'  //inject template script tag in body or header, it should be in BODY because the root container is under body tag
     }
 );
-// var React=require('react');
-// var ReactDom=require('react-dom');
-// var App = require('./components/App');
-// ReactDom.render(
-//     <App />,
-//     document.getElementById('app')
-// );
+
 module.exports= {
     entry: __dirname + '/app/index.js', //the entry point of your need-to-transform files
     mode: 'development',
