@@ -23,6 +23,13 @@ module.exports= {
                 test: /\.js$/,  //which files will be affected by the loader
                 exclude: /node_modules/,  //specify files that match the "test" criteria, that you don't want to be transformed
                 loader: "babel-loader"   //Your loader will search for all files ending in ".js", excluding files in the node_modules folder. Whatever files it finds, it will run through the 'babel-loader' transformation.
+            },
+            {
+                test: /\.css$/,  //which files will be affected by the loader
+                use: [ 'style-loader', 'css-loader' ]
+                // the loaders for css files
+                //style-loader: adds CSS to the DOM by injecting a <style> tag
+                //css-loader: interprets @import and url() like import/require() and will resolve them.
             }
         ]
     },

@@ -79,11 +79,42 @@ Value: Brightness, if adding more white into certain color, the brightness will 
 
 
 Ref: 
-http://vis.baidu.com/chartcolor/basis/
-https://blog.csdn.net/yongjiankuang/article/details/79279754
+* http://vis.baidu.com/chartcolor/basis/
+* https://blog.csdn.net/yongjiankuang/article/details/79279754
 
 7. How to Style React Component: 
+
 * Flexbox Layout:
-    * use case: when defining a layout for dynamic or even unknown screen sizes ;
+    * use case: for one-dimensional layout
+````css
+/*Flex Layout Container*/
+.flexContainer {
+    display: flex;
+    display: -webkit-flex;
+    /*Browser Hack for Safari*/
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-evenly;
+    /*justify-content: space-evenly; This doesn't work for result! */ 
+}
+.ColorCard {
+    flex-basis: auto;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    margin: 2px auto;
+}
+````
+The result eventually displays like this: 
+![alt text][result1]
+[result1]: 
+And this makes to shift to grid system layout
+* Grid System 
+    * use case: for two-dimensional layout 
+* Import CSS into React Framework: 
+1. import CSS style sheet(XXX.css) directly: 
+N.B. if you are using webpack, please install the css loader and correspondingly modify the webpack.config.js
+2. inline style:
 
 https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-//import ColorCard from "./ColorCard";
-import App from "App.css"
+import ColorCard from "./ColorCard.js";
+import "./App.css";
 
 //ES6 to define an isolated component, state is only available to class
 class App extends Component {

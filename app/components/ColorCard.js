@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './ColorCard.css';
 
 //class will have state and lifecycle etc additional features, compared with function() {}
 class ColorCard extends Component {
@@ -10,7 +11,7 @@ class ColorCard extends Component {
     render() {
         return (
             <div id={this.props.id} className="ColorCard">
-                <p style={{backgroundColor: this.props.color}}>{this.props.hsv}</p>
+                <div style={{backgroundColor: this.props.color, height: '100%', width: '100%'}}>{this.props.hsv}</div>
             </div>);
     }
 
