@@ -1,10 +1,18 @@
 /*Flex Layout Container*/
 .flexContainer {
-    display: flex;
-    display: -webkit-flex;
-    /*Browser Hack for Safari*/
-    flex-wrap: wrap;
-    flex-direction: row;
-    /*align-content: space-evenly;*/
-    /*justify-content: space-evenly;*/
+    display: grid;
+    grid-row-gap: calc((4vw - 16px)/11);
+    /*
+    Body Element: default margin(8px 8px 8px 8px)
+    (100vw-12*8 - 16px(left and right body margin))/11(11 gaps bwt 12 blocks)
+    */
+    grid-template-columns: repeat(12, 8vw);
+    /*8vw = 100% viewport/ 12 */
+    grid-template-rows: 8vw;
+    /*explicit row: the first template row*/
+    grid-auto-rows: 8vw;
+    justify-content: space-around;
+    /*inexplicit grid: the latering added rows */
 }
+
+/*CSS unit: https://www.w3schools.com/cssref/css_units.asp*/

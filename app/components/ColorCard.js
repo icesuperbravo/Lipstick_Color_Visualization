@@ -11,7 +11,7 @@ class ColorCard extends Component {
     render() {
         return (
             <div id={this.props.id} className="ColorCard">
-                <div style={{backgroundColor: this.props.color, height: '100%', width: '100%'}}>{this.props.hsv}</div>
+                <div style={{backgroundColor: this.props.color}}>{this.props.hsv}</div>
             </div>);
     }
 
