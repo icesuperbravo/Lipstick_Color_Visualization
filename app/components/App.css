@@ -1,16 +1,16 @@
 /*Flex Layout Container*/
 .flexContainer {
     display: grid;
-    grid-row-gap: calc((4vw - 16px)/11);
+    grid-row-gap: calc((100vw - 22vw*4.4 - 16px)/19);
     /*
-    Body Element: default margin(8px 8px 8px 8px)
-    (100vw-12*8 - 16px(left and right body margin))/11(11 gaps bwt 12 blocks)
+    Body Element: default margin(8px 8px 8px 8px) but also varying on different browser settings, so we better manually set a margin and padding for body and element tag
+    (100vw-22*4.4 - 16px(left and right body margin))/11(11 gaps bwt 12 blocks)
     */
-    grid-template-columns: repeat(12, 8vw);
-    /*8vw = 100% viewport/ 12 */
-    grid-template-rows: 8vw;
+    grid-template-columns: repeat(22, 4.4vw);
+    /*upper limit 4.54vw = 100% viewport/ 22 */
+    grid-template-rows: 4.4vw;
     /*explicit row: the first template row*/
-    grid-auto-rows: 8vw;
+    grid-auto-rows: 4.4vw;
     justify-content: space-around;
     /*inexplicit grid: the latering added rows */
 }

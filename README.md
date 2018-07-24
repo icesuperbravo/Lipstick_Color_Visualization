@@ -63,7 +63,7 @@ dog.age = 5  //dog.age actually changed!
 dog = { name: 'biko'} //report an error
 ````
 
-6. Sorting colors by hex;
+6. Sorting Color Scheme
 * Some Basic Theories on Color:
 A color is determined by 3 main factors(HSV/L): hue(色相), saturation（饱和度）, value/luminosity（明度）;
 
@@ -75,12 +75,16 @@ Value: Brightness, if adding more white into certain color, the brightness will 
 
 * My rough idea on the color sorting
 1. transform the hexvalue to HSV space;
-2. Sort the color by hue(X) and value(Y)?
+2. Sort the color by hue(X) and value(Y)
+* The current scheme for color sorting: 
+1. Firstly, sort the color by luminosity and divide the sorted group into five subgroup;
+2. Using color distance to cluster color;
 
 
 Ref: 
 * http://vis.baidu.com/chartcolor/basis/
 * https://blog.csdn.net/yongjiankuang/article/details/79279754
+* https://stackoverflow.com/questions/22973926/given-a-list-of-random-hexadecimal-colors-sort-them-based-on-likeness
 
 7. How to Style React Component: 
 
