@@ -76,7 +76,6 @@ class App extends Component {
             data = Object.assign([], data);
             const clustered = [data.shift()];
 
-
             while(data.length) {
                 const a = data.shift(), c = { d: Infinity };
                // const a = clustered[0], c = { d: Infinity };
@@ -149,6 +148,10 @@ class App extends Component {
             return {h: Math.round(h),  s:Math.round(s*100), v: Math.round(max*100), r: r*255,  g: g*255,  b: b*255, lum:Math.round(luminosity*100)};
         };
 
+        const formatColorName = (colorName) => {
+            const pattern = /(\d{1,3}\s)[a-zA-Z]*/g
+        };
+
         axios
             .get('http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick')
             .then(response => {
@@ -158,15 +161,16 @@ class App extends Component {
                 for (let item in response.data)
                 {
                     let colorValue = response.data[item]['product_colors'].map(subItem => {
-                        return subItem.hex_value;
+                        return {hexColor:subItem.hex_value, colorName: subItem.colour_name};
                     });
                     // console.log(colorValue);
                     colorValue.map(colorHex => {
                         hexValueArray.push(colorHex);
                         lipArray.push({
-                            id: response.data[item].id + colorHex,
-                            hexColor: colorHex,
-                            colorModel:hex2RGBHSV(colorHex),
+                            id: response.data[item].id + colorHex.hexColor,
+                            hexColor: colorHex.hexColor,
+                            colorName: colorHex.colorName,
+                            colorModel:hex2RGBHSV(colorHex.hexColor),
                             name: response.data[item].name
                         });
                     });
@@ -190,13 +194,10 @@ class App extends Component {
             <div className="flexContainer">
                   {
                       this.state.data.map(item => {
-                              return <ColorCard key = {item.id} id= {item.id}  color={item.hexColor} hsv = {"("+item.dist+', '+item.colorModel.lum+
-                              // item.colorModel.r+", "+item.colorModel.g+", "+item.colorModel.b+", "+
-                              ")"}/>;
+                          return <ColorCard key = {item.id} id= {item.id}  color={item.hexColor} name={item.colorName}/>
 
                       })
                   }
-
             </div>
         )
     }

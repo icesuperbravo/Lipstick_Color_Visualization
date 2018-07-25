@@ -122,3 +122,11 @@ N.B. if you are using webpack, please install the css loader and correspondingly
 2. inline style:
 
 https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822
+
+8. Color Name Display
+Problem: The color names that are extracted from make-up API are in different format: 
+* all capital e.g. CASITA;
+* all normal e.g. bing;
+* color code with name e.g. 680 After or After 680 
+* color code only e.g. 999 or (999)
+* name with hyphen after e.g. Nude - or Nude- 
