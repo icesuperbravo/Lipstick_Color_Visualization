@@ -15,23 +15,60 @@ class App extends Component {
     componentDidMount() {
 
         const sortColor = data => {
-            data = Object.assign([], data);
-            data.sort((a, b) => {
-               return a.colorModel.lum - b.colorModel.lum;
-            });
-            const clusterNum = Math.floor(data.length/5);
+            // console.log(data)
+            // data = Object.assign([], data);
+            // data.sort((a, b) => {
+            //    return a.colorModel.lum - b.colorModel.lum;
+            // });
+            // const grpNum = 5;
+            // const clusterNum = Math.ceil(data.length/grpNum);
+            // let sorted=[];
+            // for (let i=0; i<(grpNum); i++)
+            // {
+            //     //console.log(i);
+            //
+            //     const a = clusterNum * i;
+            //     //const b = clusterNum * (i + 1);
+            //     let b;
+            //     if (i != (grpNum-1) )  b = clusterNum * (i + 1);
+            //     else  b = data.length;
+            //     sorted = sorted.concat(clusterColor(data.slice(a, b)));
+            //     //console.log(sorted);
+            //     console.log(b-a);
+            //     //console.log(b);
+            // }
+            const toSort=clusterColor(data);
+            let sorting=[new Array()];
             let sorted=[];
-            for (let i=0; i<5; i++)
+            for (let b in toSort)
             {
-                //console.log(i);
-
-                const a = clusterNum * i;
-                const b = clusterNum * (i + 1);
-                sorted = sorted.concat(clusterColor(data.slice(a, b)));
-                console.log(a);
-                console.log(b);
+                if (toSort[b].dist >= 17)
+                {
+                    sorting.push(new Array(toSort[b]));
+                }
+                else sorting[sorting.length-1].push(toSort[b]);
+            }
+            sorting.sort( (a, b) =>
+            {
+                return a[0].colorModel.lum - b[0].colorModel.lum;
+            });
+            for (let b in sorting)
+            {
+                sorted = sorted.concat(sorting[b]);
             }
 
+
+            // const sortIndex = clusterColor(sorting.map(item => {
+            //     return item[0];
+            // }));
+            // for (let a in sortIndex)
+            // {
+            //     for (let b in sorting)
+            //     {
+            //         if (sortIndex[a]===sorting[b][0]) sorted = sorted.concat(sorting[b]);
+            //     }
+            // }
+            // console.log(sorted);
             return sorted;
         };
 
@@ -39,8 +76,11 @@ class App extends Component {
             data = Object.assign([], data);
             const clustered = [data.shift()];
 
+
             while(data.length) {
                 const a = data.shift(), c = { d: Infinity };
+               // const a = clustered[0], c = { d: Infinity };
+               // console.log (a);
 
                 for(let [i, b] of Object.entries(clustered)) {
                     //The Object.entries() method returns an array of a given object's own enumerable property [key, value] pairs, in the same order as that provided by a for...in loop
@@ -50,16 +90,19 @@ class App extends Component {
                             Math.abs(a.colorModel.g - b.colorModel.g) +
                             Math.abs(a.colorModel.b - b.colorModel.b)
                         ) / 3);
-                   // const aveV = Math.abs(a.colorModel.lum - b.colorModel.lum);
                     if( average < c.d ) {
                         Object.assign(c, { d: average, i: i });
                     }
                 }
-               // a.dist=c.d;
+                // let newItem = data.splice(c.i, 1)[0];
+                // newItem.dist=c.d;
+                //clustered.push(newItem);
+                a.dist=c.d;
                 clustered.splice(c.i, 0, a);
             }
+            console.log(clustered);
 
-
+           // return clustered;
             return clustered.reverse();
         };
 
@@ -147,7 +190,7 @@ class App extends Component {
             <div className="flexContainer">
                   {
                       this.state.data.map(item => {
-                              return <ColorCard key = {item.id} id= {item.id}  color={item.hexColor} hsv = {"("+item.colorModel.b+', '+item.colorModel.lum+
+                              return <ColorCard key = {item.id} id= {item.id}  color={item.hexColor} hsv = {"("+item.dist+', '+item.colorModel.lum+
                               // item.colorModel.r+", "+item.colorModel.g+", "+item.colorModel.b+", "+
                               ")"}/>;
 
