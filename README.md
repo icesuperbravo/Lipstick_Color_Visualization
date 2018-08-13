@@ -130,3 +130,12 @@ Problem: The color names that are extracted from make-up API are in different fo
 * color code with name e.g. 680 After or After 680 
 * color code only e.g. 999 or (999)
 * name with hyphen after e.g. Nude - or Nude- 
+
+9. Regex
+````javascript
+//Regex Expression
+        // (?:...)用来创建一个非捕获组（non-capturing group）， 仅仅是为了操作方便，匹配的文本不加入到结果数组中。
+        // (...) 捕获组
+        // ?: 0 or 1 time
+        // + at least once
+ ````

@@ -6,23 +6,32 @@
     /*margin and padding refers to the width of the element*/
 }
 
-.ColorCard > div {
+.ColorBackground {
     /*styling the color name inside div element*/
     color: white;
-    font-size: 0.8vw;
-    text-align: center;
+    font-size: 0.6vw;
+    /*text-align: center;*/
     word-wrap: break-word;
     /*allow to break the long word to another line*/
     font-family: "Comic Sans MS", cursive, sans-serif;
 
     /*let the inside div fully occupy the ColorCard frame*/
-    height: 100%;
-    line-height: 4.4vw;
-    /*
-    Purpose: To make the text vertically align in the div block element, set the line-height identically with height;
-
-    Mistake: 100%, it refers to 100% to the font-size of the element, instead of 100% of the element height;
-     */
     width: 100%;
     border-radius: 5px;
+    height: 100%;
+    /*line-height: 4.4vw;*/
+    /*
+    Purpose: To make the text vertically align in the div block element, set the line-height identically with height;
+    Use Case: It can only be used in single line of text
+    Mistake: 100%, it refers to 100% to the font-size of the element, instead of 100% of the element height;
+     */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ColorName {
+    text-align: center;
+    /*margin: auto;*/
 }

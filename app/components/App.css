@@ -1,12 +1,25 @@
-/*Flex Layout Container*/
-.flexContainer {
+.row {
+    display: flex;
+    height: 100vh;
+}
+
+
+.colorCardContainer {
+    /*flex-basis: 75vw;*/
+    flex: 1 1 75vw;
+    overflow: auto; /*  If overflow is clipped, a scrollbar should be added to see the rest of the content */
     display: grid;
-    grid-row-gap: calc((100vw - 22vw*4.4 - 16px)/19);
+    grid-row-gap: calc((75vw - 16*4.4vw - 16px)/15);
+    grid-template-columns: repeat(16, 4.4vw);
+
+    /*when GridContainer width equals to 100vw*/
+    /*grid-row-gap: calc((100vw - 22*4.4vw - 16px)/19;*/
     /*
+    Row gap equals to Column gap;
     Body Element: default margin(8px 8px 8px 8px) but also varying on different browser settings, so we better manually set a margin and padding for body and element tag
     (100vw-22*4.4 - 16px(left and right body margin))/11(11 gaps bwt 12 blocks)
     */
-    grid-template-columns: repeat(22, 4.4vw);
+    /*grid-template-columns: repeat(22, 4.4vw);*/
     /*upper limit 4.54vw = 100% viewport/ 22 */
     grid-template-rows: 4.4vw;
     /*explicit row: the first template row*/
@@ -15,4 +28,18 @@
     /*inexplicit grid: the latering added rows */
 }
 
-/*CSS unit: https://www.w3schools.com/cssref/css_units.asp*/
+.filterFormContainer {
+    /*flex-basis: 25vw;*/
+    flex: 0 0 25vw; /*This is the shorthand for flex-grow, flex-shrink and flex-basis combined.*/
+    background-color: purple;
+    margin-right: 2px;
+    border-radius: 3px;
+}
+
+
+
+/*
+1. CSS unit: https://www.w3schools.com/cssref/css_units.asp
+2. Solution on Filter Forms : https://stackoverflow.com/questions/31715240/how-to-simulate-positionfixed-behavior-on-flexbox-aligned-sidebar
+*/
+

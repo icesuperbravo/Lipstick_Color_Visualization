@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import ColorCard from "./ColorCard.js";
 import "./App.css";
+import FilterForm from "./FilterForm";
 
 //ES6 to define an isolated component, state is only available to class
 class App extends Component {
@@ -149,8 +150,20 @@ class App extends Component {
         };
 
         const formatColorName = (colorName) => {
-            const pattern = /(\d{1,3}\s)[a-zA-Z]*/g
+           let newName = "";
+           for (let i=0; i<colorName.length; i++)
+           {
+
+               if (i === 0) newName+=colorName[i].toUpperCase();
+               else if (/\s/.test(colorName[i]) && i != colorName.length-1)
+               {
+                   newName+=" "+colorName[i+1].toUpperCase();
+                   i++;
+               } else newName+=colorName[i].toLowerCase();
+           }
+           return newName;
         };
+
 
         axios
             .get('http://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick')
@@ -169,7 +182,7 @@ class App extends Component {
                         lipArray.push({
                             id: response.data[item].id + colorHex.hexColor,
                             hexColor: colorHex.hexColor,
-                            colorName: colorHex.colorName,
+                            colorName: formatColorName(colorHex.colorName),
                             colorModel:hex2RGBHSV(colorHex.hexColor),
                             name: response.data[item].name
                         });
@@ -191,13 +204,18 @@ class App extends Component {
 
     render() {
         return (
-            <div className="flexContainer">
-                  {
-                      this.state.data.map(item => {
-                          return <ColorCard key = {item.id} id= {item.id}  color={item.hexColor} name={item.colorName}/>
+            <div className="row">
+                <div className="filterFormContainer">
+                    <FilterForm/>
+                </div>
+                <div className="colorCardContainer">
+                    {
+                        this.state.data.map(item => {
+                            return <ColorCard key={item.id} id={item.id} color={item.hexColor} name={item.colorName}/>
 
-                      })
-                  }
+                        })
+                    }
+                </div>
             </div>
         )
     }
