@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ColorCard from "./ColorCard.js";
+import FilterForm from "./FilterForm.js";
 import "./App.css";
-import FilterForm from "./FilterForm";
 
 //ES6 to define an isolated component, state is only available to class
 class App extends Component {
@@ -11,6 +11,7 @@ class App extends Component {
         this.state = {
             data: []
         };
+        this.price=200;
     }
 
     componentDidMount() {
@@ -184,7 +185,9 @@ class App extends Component {
                             hexColor: colorHex.hexColor,
                             colorName: formatColorName(colorHex.colorName),
                             colorModel:hex2RGBHSV(colorHex.hexColor),
-                            name: response.data[item].name
+                            name: response.data[item].name,
+                            brand: response.data[item].brand,
+                            price: response.data[item].price
                         });
                     });
                 }
@@ -206,7 +209,7 @@ class App extends Component {
         return (
             <div className="row">
                 <div className="filterFormContainer">
-                    <FilterForm/>
+                    <FilterForm max={this.price}/>
                 </div>
                 <div className="colorCardContainer">
                     {
