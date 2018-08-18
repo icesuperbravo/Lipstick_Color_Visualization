@@ -139,3 +139,5 @@ Problem: The color names that are extracted from make-up API are in different fo
         // ?: 0 or 1 time
         // + at least once
  ````
+ 10. Lifting State Up
+ several components(in my case, they are FilterForm and ColorCard) need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let’s see how this works in action.

@@ -6,32 +6,30 @@ class FilterForm extends Component {
     constructor(props) {
         super(props);
         this.state={
-            colorName:'',
+            keyword:'',
             price:50
         };
-        this.handleChange =this.handleChange.bind(this);
-        // ES6 Class does not auto-bind this in the context;
+        this.handleChange=this.handleChange.bind(this);
+        this.handleSubmit=this.handleSubmit.bind(this);
+        // ES6 CLASS does not auto-bind this in the context;
         // How to bind this: https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
     }
 
     handleChange(event) {
 
-        //console.log(event.target.name);
-
         switch (event.target.name) {
             case "colorName":
-                this.setState({colorName:event.target.value,});
-                break;
+                return this.setState({keyword:event.target.value});
             case "priceRange":
-                this.setState({price: event.target.value});
-                break;
-        }
-        //console.log(this.state);
+                return this.setState({price: event.target.value});
+        };
 
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        this.props.onSearchingSubmit(this.state);
+        //console.log(this.state);
     }
 
     /*Rewrite event functions in React:
@@ -47,11 +45,11 @@ class FilterForm extends Component {
                     <h3>Welcome to Lipstick Color Picker!</h3>
                     <div className="colorNameSearch">
                         <label>色号名字：</label>
-                        <input type="text" name="colorName" value={this.state.colorName} onChange={this.handleChange} placeholder="e.g. Dior 999"/>
+                        <input type="text" name="colorName" value={this.state.keyword} onChange={this.handleChange} placeholder="e.g. Dior 999"/>
                     </div>
                     <div className="priceRangeSearch">
                         <label>The range of price:</label>
-                        <input type="range" name="priceRange" min="0" max={this.props.max} placeholder="50" value={this.state.price} onChange={this.handleChange}/>
+                        <input type="range" name="priceRange" min="0" max="200" placeholder="50" value={this.state.price} onChange={this.handleChange}/>
                         {this.state.price}
                     </div>
                     <div className="submitSearch">

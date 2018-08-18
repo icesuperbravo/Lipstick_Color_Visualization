@@ -5,40 +5,33 @@ import FilterForm from "./FilterForm.js";
 import "./App.css";
 
 //ES6 to define an isolated component, state is only available to class
+//<div> is a DOM element, however, <Div> is a React Component;
+//props is read-only in React, but state is writable;
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
+            data: [],
+            searchKeywords:'',
+            searchPrice:0
         };
-        this.price=200;
+        this.handleSearchingSubmit=this.handleSearchingSubmit.bind(this);
+        //Use Arrow Function does not need to bind this context;
+    }
+
+    handleSearchingSubmit (filteringCon)
+    {
+        this.setState({
+              searchKeywords:filteringCon.keyword,
+                searchPrice:filteringCon.price
+            });
+        console.log(this.state.searchKeywords);
     }
 
     componentDidMount() {
 
         const sortColor = data => {
-            // console.log(data)
-            // data = Object.assign([], data);
-            // data.sort((a, b) => {
-            //    return a.colorModel.lum - b.colorModel.lum;
-            // });
-            // const grpNum = 5;
-            // const clusterNum = Math.ceil(data.length/grpNum);
-            // let sorted=[];
-            // for (let i=0; i<(grpNum); i++)
-            // {
-            //     //console.log(i);
-            //
-            //     const a = clusterNum * i;
-            //     //const b = clusterNum * (i + 1);
-            //     let b;
-            //     if (i != (grpNum-1) )  b = clusterNum * (i + 1);
-            //     else  b = data.length;
-            //     sorted = sorted.concat(clusterColor(data.slice(a, b)));
-            //     //console.log(sorted);
-            //     console.log(b-a);
-            //     //console.log(b);
-            // }
+
             const toSort=clusterColor(data);
             let sorting=[new Array()];
             let sorted=[];
@@ -59,18 +52,6 @@ class App extends Component {
                 sorted = sorted.concat(sorting[b]);
             }
 
-
-            // const sortIndex = clusterColor(sorting.map(item => {
-            //     return item[0];
-            // }));
-            // for (let a in sortIndex)
-            // {
-            //     for (let b in sorting)
-            //     {
-            //         if (sortIndex[a]===sorting[b][0]) sorted = sorted.concat(sorting[b]);
-            //     }
-            // }
-            // console.log(sorted);
             return sorted;
         };
 
@@ -95,9 +76,7 @@ class App extends Component {
                         Object.assign(c, { d: average, i: i });
                     }
                 }
-                // let newItem = data.splice(c.i, 1)[0];
-                // newItem.dist=c.d;
-                //clustered.push(newItem);
+
                 a.dist=c.d;
                 clustered.splice(c.i, 0, a);
             }
@@ -187,7 +166,8 @@ class App extends Component {
                             colorModel:hex2RGBHSV(colorHex.hexColor),
                             name: response.data[item].name,
                             brand: response.data[item].brand,
-                            price: response.data[item].price
+                            price: response.data[item].price,
+                            price_sign: response.data[item].price_sign
                         });
                     });
                 }
@@ -209,13 +189,12 @@ class App extends Component {
         return (
             <div className="row">
                 <div className="filterFormContainer">
-                    <FilterForm max={this.price}/>
+                    <FilterForm onSearchingSubmit={this.handleSearchingSubmit}/>
                 </div>
                 <div className="colorCardContainer">
                     {
                         this.state.data.map(item => {
                             return <ColorCard key={item.id} id={item.id} color={item.hexColor} name={item.colorName}/>
-
                         })
                     }
                 </div>
