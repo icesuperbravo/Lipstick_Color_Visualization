@@ -19,14 +19,26 @@ class App extends Component {
         //Use Arrow Function does not need to bind this context;
     }
 
+
     handleSearchingSubmit (filteringCon)
     {
         this.setState({
-              searchKeywords:filteringCon.keyword,
-                searchPrice:filteringCon.price
-            });
-        console.log(this.state.searchKeywords);
+            searchKeywords: filteringCon.keyword,
+            searchPrice: filteringCon.price,
+            changeColorCards: true
+        });
     }
+
+    //在正则表达式中添加变量，使用构造函数！
+    // https://www.cnblogs.com/season-huang/p/3544873.html
+    searchColorCards (data, searchWord, searchPrice)
+    {
+        return data.filter((item) => {
+            const pattern =new RegExp(searchWord, "i");
+            const price=parseInt(item.price);
+            return pattern.test(item.brandName+" "+item.colorName) && (price < searchPrice);
+        });
+    };
 
     componentDidMount() {
 
@@ -164,8 +176,8 @@ class App extends Component {
                             hexColor: colorHex.hexColor,
                             colorName: formatColorName(colorHex.colorName),
                             colorModel:hex2RGBHSV(colorHex.hexColor),
-                            name: response.data[item].name,
-                            brand: response.data[item].brand,
+                            //name: response.data[item].name,
+                            brandName: response.data[item].brand+" "+response.data[item].name,
                             price: response.data[item].price,
                             price_sign: response.data[item].price_sign
                         });
@@ -186,6 +198,7 @@ class App extends Component {
     }
 
     render() {
+        const displayData = (this.state.searchKeywords!=false || this.state.searchPrice!=0)? this.searchColorCards(this.state.data, this.state.searchKeywords, this.state.searchPrice):this.state.data;
         return (
             <div className="row">
                 <div className="filterFormContainer">
@@ -193,7 +206,7 @@ class App extends Component {
                 </div>
                 <div className="colorCardContainer">
                     {
-                        this.state.data.map(item => {
+                        displayData.map(item => {
                             return <ColorCard key={item.id} id={item.id} color={item.hexColor} name={item.colorName}/>
                         })
                     }
@@ -202,6 +215,8 @@ class App extends Component {
         )
     }
 }
+
+
 
 export default App;
 
