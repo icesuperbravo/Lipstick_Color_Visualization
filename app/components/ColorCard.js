@@ -5,14 +5,21 @@ import './ColorCard.css';
 class ColorCard extends Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
+
+    }
+    handleClick (event) {
+        console.log(this.props.datum);
+        this.props.onDisplayInfo(this.props.datum);
     }
 
 
     render() {
+        const datum=this.props.datum;
         return (
-            <div id={this.props.id} className="ColorCard">
-                <div className="ColorBackground" style={{backgroundColor: this.props.color}}>
-                    <div className="ColorName">{this.props.name}</div>
+            <div id={datum.id} className="ColorCard" onClick={this.handleClick} >
+                <div className="ColorBackground" style={{backgroundColor: datum.hexColor}}>
+                    <div className="ColorName">{datum.colorName}</div>
                 </div>
             </div>);
     }

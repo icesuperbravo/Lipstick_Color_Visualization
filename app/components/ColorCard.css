@@ -13,7 +13,7 @@
     /*text-align: center;*/
     word-wrap: break-word;
     /*allow to break the long word to another line*/
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    /*font-family: "Comic Sans MS", cursive, sans-serif;*/
 
     /*let the inside div fully occupy the ColorCard frame*/
     width: 100%;

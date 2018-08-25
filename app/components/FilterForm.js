@@ -19,17 +19,17 @@ class FilterForm extends Component {
 
         switch (event.target.name) {
             case "colorName":
-                return this.setState({keyword:event.target.value});
+                 this.setState({keyword:event.target.value});
+                 break;
             case "priceRange":
-                return this.setState({price: event.target.value});
+                 this.setState({price: event.target.value});
+                 break;
         };
-
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.onSearchingSubmit(this.state);
-        //console.log(this.state);
+        this.props.onSearchingChange(this.state);
     }
 
     /*Rewrite event functions in React:
@@ -49,7 +49,7 @@ class FilterForm extends Component {
                     </div>
                     <div className="priceRangeSearch">
                         <label>The range of price:</label>
-                        <input type="range" name="priceRange" min="0" max="200" placeholder="50" value={this.state.price} onChange={this.handleChange}/>
+                        <input type="range" name="priceRange" min="0" max="200" placeholder="100" value={this.state.price} onChange={this.handleChange}/>
                         {this.state.price}
                     </div>
                     <div className="submitSearch">

@@ -1,10 +1,11 @@
 .row {
     display: flex;
     height: calc(100vh - 16px);
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 
-.colorCardContainer {
+.mainContainer {
     /*flex-basis: 75vw;*/
     flex: 1 1 75vw;
     overflow: auto; /*  If overflow is clipped, a scrollbar should be added to see the rest of the content */
@@ -28,12 +29,13 @@
     /*inexplicit grid: the latering added rows */
 }
 
-.filterFormContainer {
+.sideContainer {
     /*flex-basis: 25vw;*/
     flex: 0 0 25vw; /*This is the shorthand for flex-grow, flex-shrink and flex-basis combined.*/
     background-color: purple;
     margin-right: 2px;
     border-radius: 3px;
+    padding:10px;
 }
 
 
