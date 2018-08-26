@@ -1,5 +1,16 @@
+.InfoBox {
+    height: 50vh;
+    overflow: auto;
+}
+.ImageBox {
+    text-align: center;
+}
+
 img {
-    margin:auto;
-    width: 80%;
-    height:50%;
+    height: 40vh;
+    width: 40vh;
+}
+
+p {
+    font-size: 10px;
 }

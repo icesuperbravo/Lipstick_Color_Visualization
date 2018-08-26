@@ -44,7 +44,7 @@ class FilterForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <h3>Welcome to Lipstick Color Picker!</h3>
                     <div className="colorNameSearch">
-                        <label>色号名字：</label>
+                        <label>Keyword：</label>
                         <input type="text" name="colorName" value={this.state.keyword} onChange={this.handleChange} placeholder="e.g. Dior 999"/>
                     </div>
                     <div className="priceRangeSearch">

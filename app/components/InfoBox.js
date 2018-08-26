@@ -8,20 +8,36 @@ class InfoBox extends React.Component {
 
 
     render() {
-        const disInfo=this.props.disInfo;
-        const defInfo="Please click the card to see!";
+        const disInfo = this.props.disInfo;
+        const rendering = function (disInfo) {
+            if (disInfo) {
+                return (
+                    <div className="InfoSession">
+                        <div className="ImageBox">
+                            <img src={ ("http:" + disInfo.image)} align="middle"/>
+                        </div>
+                        <p>Name: {disInfo.colorName}</p>
+                        <p>Brand: {disInfo.brandName}</p>
+                        <p>Price: {disInfo.price + '$'}</p>
+                        <p>Description: {disInfo.description}</p>
+                    </div>
+                );
+            }
+            else
+                return (
+                    <div className="initInfoSession">
+                        <p>Please click the color card to see more details!</p>
+                    </div>
+                );
+        };
+
         return (
             <div className="InfoBox">
-                <h3>Click the color card to see more details!</h3>
-                <img src={disInfo? ("http:"+disInfo.image) : ""} alt={disInfo? disInfo.brandName : defInfo } align="middle" width="100px"/>
-                <p>Name: {disInfo? disInfo.colorName : defInfo}</p>
-                <p>Brand: {disInfo? disInfo.brandName : defInfo}</p>
-                <p>Price: {disInfo? disInfo.price+'$' : defInfo}</p>
-                <p>Description: {disInfo? disInfo.description : defInfo}</p>
+                <h3>Color Card InfoBox</h3>
+                {rendering(disInfo)}
             </div>
         )
     };
-
 
 
 }
